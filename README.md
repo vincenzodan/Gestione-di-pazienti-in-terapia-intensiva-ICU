@@ -35,7 +35,7 @@ Entrambi i modelli sono stati verificati usando specifiche CTL e LTL per garanti
 ---
 
 ## 📂 Struttura del progetto
-
+```
 Gestione-di-pazienti-in-terapia-intensiva-ICU/
 ├── GSPN/
 │   ├── Script_e_test/
@@ -55,6 +55,8 @@ Gestione-di-pazienti-in-terapia-intensiva-ICU/
 ├── Documentazione.pdf
 └── README.md
 
+```
+---
 ## 🛠️ Requisiti
 
 - NuSMV per la verifica CTL/LTL
