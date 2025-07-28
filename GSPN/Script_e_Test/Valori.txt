@@ -1,0 +1,21 @@
+1.
+Tasso di arrivo: 0.1 (10 minuti) 
+Limite Pazienti in coda: 20 
+Posti letto: 3 
+Medici: 1
+Infermieri: 1 
+
+2. 
+Tasso di arrivo: 0.1 (10 minuti) 
+Limite Pazienti in coda: 20 
+Posti letto: 5 
+Medici: 1
+Infermieri: 3 
+
+3. 
+Tasso di arrivo: 0.1 (10 minuti) 
+Limite Pazienti in coda: 20 
+Posti letto: 10 
+Medici: 3
+Infermieri: 5 
+

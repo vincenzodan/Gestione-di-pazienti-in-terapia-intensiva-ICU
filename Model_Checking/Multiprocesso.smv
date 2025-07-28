@@ -1,0 +1,160 @@
+-- Modulo paziente
+MODULE paziente(id,medico,infermiere)
+VAR
+  stato : {osservazione, allarme, trattamento};
+  evento_critico : boolean;
+  tempo_allarme : 0..3;
+  istruzioni: boolean;
+  
+ASSIGN
+  init(stato) := osservazione; 
+  init(evento_critico) := FALSE;
+  init(tempo_allarme) := 0;
+  init(istruzioni) := FALSE; 
+    
+  next(istruzioni) := case
+	stato = allarme & infermiere = id : TRUE; 
+	stato = trattamento & infermiere = id : FALSE; 
+	TRUE: istruzioni; 
+  esac; 
+  
+  next(stato) := case
+	stato = osservazione : {osservazione,allarme};
+	stato = allarme & (medico = id | (infermiere = id & istruzioni)): trattamento;
+	stato = trattamento: osservazione;
+	TRUE : stato;
+  esac; 
+  
+  next(tempo_allarme) := case
+    stato = allarme & tempo_allarme < 3 : tempo_allarme + 1;
+    !(stato = allarme) : 0;
+    TRUE : tempo_allarme;
+  esac;
+   
+  next(evento_critico) := case
+    tempo_allarme = 2 & (medico != id & medico != 0) & (infermiere != id | !istruzioni) & stato != trattamento & next(stato) != trattamento: TRUE;
+    stato = trattamento : FALSE;
+    TRUE : evento_critico;
+  esac;
+
+-- Modulo principale
+MODULE main
+VAR
+
+
+  medico : {0,1,2,3};
+  infermiere : {0,1,2,3};
+  p1 : paziente(1,medico,infermiere);
+  p2 : paziente(2,medico,infermiere);
+  p3 : paziente(3,medico,infermiere);
+  tempo_max : {0,1,2,3};
+  
+  
+ASSIGN
+  init(medico) := 0;
+  init(infermiere) := 0;
+  init(tempo_max) := 0; 
+  
+  next(tempo_max) := case
+	p1.tempo_allarme > 0 & p1.tempo_allarme >= p2.tempo_allarme &  p1.tempo_allarme >= p3.tempo_allarme & medico != 1 & infermiere != 1 : 1;
+	p2.tempo_allarme > 0 & p2.tempo_allarme > p1.tempo_allarme &  p2.tempo_allarme >= p3.tempo_allarme & medico != 2 & infermiere != 2 : 2;
+	p3.tempo_allarme > 0 & p3.tempo_allarme > p1.tempo_allarme &  p3.tempo_allarme > p2.tempo_allarme & medico != 3 & infermiere != 3: 3;
+	
+	tempo_max = 1 & p1.stato != allarme : 0;
+	tempo_max = 2 & p2.stato != allarme : 0;
+	tempo_max = 3 & p3.stato != allarme : 0;
+	TRUE : tempo_max;
+  esac; 
+  
+  next(medico):= case 
+	p1.stato = allarme & medico = 0 & tempo_max = 1 & infermiere != 1: 1;
+	p2.stato = allarme & medico = 0 & tempo_max = 2 & infermiere != 2: 2;
+	p3.stato = allarme & medico = 0 & tempo_max = 3 & infermiere != 3: 3;
+	
+	p1.stato = allarme & medico = 0 & infermiere != 1: 1; 
+	p2.stato = allarme & medico = 0 & infermiere != 2: 2;
+	p3.stato = allarme & medico = 0 & infermiere != 3: 3;
+	
+	p1.stato = trattamento & medico = 1 : 0;
+	p2.stato = trattamento & medico = 2 : 0;
+	p3.stato = trattamento & medico = 3 : 0;
+	TRUE : medico;
+  esac;
+  
+  next(infermiere) := case
+	p1.stato = allarme & infermiere = 0 & !(next(medico = 1)| medico = 1): 1; 
+	p2.stato = allarme & infermiere = 0 & !(next(medico = 2)| medico = 2): 2;
+	p3.stato = allarme & infermiere = 0 & !(next(medico = 3)| medico = 3): 3;
+	
+	p1.stato = trattamento & infermiere = 1 : 0;
+	p2.stato = trattamento & infermiere = 2 : 0;
+	p3.stato = trattamento & infermiere = 3 : 0;
+	TRUE : infermiere;
+  esac;
+	
+--------------------------------------------------------------------------------|
+-- Se il medico e' disponibile durante una situazione di allarme e il contatore |
+-- dell’allarme non ha ancora raggiunto il valore massimo, allora il trattamento|
+-- verra' inevitabilmente avviato prima che si verifichi un evento				|
+-- critico:        																|
+--------------------------------------------------------------------------------|
+
+CTLSPEC AG ((p1.stato = allarme & medico = 0 & p2.stato = osservazione & p3.stato = osservazione & p1.tempo_allarme < 3) -> AF (p1.stato = trattamento & !p1.evento_critico))
+CTLSPEC AG ((p2.stato = allarme & medico = 0 & p1.stato = osservazione & p3.stato = osservazione & p2.tempo_allarme < 3) -> AF (p2.stato = trattamento & !p2.evento_critico))
+CTLSPEC AG ((p3.stato = allarme & medico = 0 & p1.stato = osservazione & p2.stato = osservazione & p3.tempo_allarme < 3) -> AF (p3.stato = trattamento & !p3.evento_critico))	  
+	---------
+	-- LTL --
+	---------
+LTLSPEC G ((p1.stato = allarme & medico = 0 & p2.stato = osservazione & p3.stato = osservazione & p1.tempo_allarme < 3) ->
+           F (p1.stato = trattamento & !p1.evento_critico))
+LTLSPEC G ((p2.stato = allarme & medico = 0 & p1.stato = osservazione & p3.stato = osservazione & p2.tempo_allarme < 3) ->
+           F (p2.stato = trattamento & !p2.evento_critico))
+LTLSPEC G ((p3.stato = allarme & medico = 0 & p2.stato = osservazione & p1.stato = osservazione & p3.tempo_allarme < 3) ->
+           F (p3.stato = trattamento & !p3.evento_critico))
+		   
+-------------------------------------------------------------------------------------|
+--Nel caso in cui il medico non sia disponibile, ma l’infermiere abbia gia'			 |
+--ricevuto istruzioni e l’allarme sia attivo da meno di 3 step, allora il trattamento|
+--sara' comunque possibile, e si potra' raggiungere uno stato in cui				 |
+--esso e' attivo e l’evento critico non si verifica									 |
+-------------------------------------------------------------------------------------|
+
+CTLSPEC AG (p1.stato = allarme & medico != 0 & medico != 1 & infermiere = 1 & p1.istruzioni & p1.tempo_allarme < 3 ->
+			EF (p1.stato = trattamento & !p1.evento_critico))
+CTLSPEC AG (p2.stato = allarme & medico != 0 & medico != 2 & infermiere = 2 & p2.istruzioni & p2.tempo_allarme < 3 ->
+			EF (p2.stato = trattamento & !p2.evento_critico))
+CTLSPEC AG (p3.stato = allarme & medico != 0 & medico != 3 & infermiere = 3 & p3.istruzioni & p3.tempo_allarme < 3 ->
+			EF (p3.stato = trattamento & !p3.evento_critico))
+
+CTLSPEC AG (p1.stato = allarme & medico != 0 & medico != 1 & infermiere = 1 & p1.istruzioni & p1.tempo_allarme < 3 ->
+			AF (p1.stato = trattamento & !p1.evento_critico))
+CTLSPEC AG (p2.stato = allarme & medico != 0 & medico != 2 & infermiere = 2 & p2.istruzioni & p2.tempo_allarme < 3 ->
+			AF (p2.stato = trattamento & !p2.evento_critico))
+CTLSPEC AG (p3.stato = allarme & medico != 0 & medico != 3 & infermiere = 3 & p3.istruzioni & p3.tempo_allarme < 3 ->
+			AF (p3.stato = trattamento & !p3.evento_critico))
+			
+LTLSPEC G (p1.stato = allarme & medico != 0 & medico != 1 & infermiere = 1 & p1.istruzioni & p1.tempo_allarme < 3 ->
+			F (p1.stato = trattamento & !p1.evento_critico))
+LTLSPEC G (p2.stato = allarme & medico != 0 & medico != 2 & infermiere = 2 & p2.istruzioni & p2.tempo_allarme < 3 ->
+			F (p2.stato = trattamento & !p2.evento_critico))
+LTLSPEC G (p3.stato = allarme & medico != 0 & medico != 3 & infermiere = 3 & p3.istruzioni & p3.tempo_allarme < 3 ->
+			F (p3.stato = trattamento & !p3.evento_critico))
+			
+------------------------------------------------------------------------------------|
+--Se nessuna azione viene intrapresa entro tre intervalli successivi all’attivazione|
+--dell’allarme, l’evento critico `e inevitabile									    |
+------------------------------------------------------------------------------------|
+
+CTLSPEC AG ((p1.stato = allarme & p1.tempo_allarme = 2 & medico != 0 & medico != 1 & infermiere != 1) ->
+			AF p1.evento_critico)
+CTLSPEC AG ((p2.stato = allarme & p2.tempo_allarme = 2 & medico != 0 & medico != 2 & infermiere != 2) ->
+			AF p2.evento_critico)
+CTLSPEC AG ((p3.stato = allarme & p3.tempo_allarme = 2 & medico != 0 & medico != 3 & infermiere != 3) ->
+			AF p3.evento_critico)
+			
+LTLSPEC G ((p1.stato = allarme & p1.tempo_allarme = 2 & medico != 0 & medico != 1 & infermiere != 1) ->
+			F p1.evento_critico)
+LTLSPEC G ((p2.stato = allarme & p2.tempo_allarme = 2 & medico != 0 & medico != 2 & infermiere != 2) ->
+			F p2.evento_critico)
+LTLSPEC G ((p3.stato = allarme & p3.tempo_allarme = 2 & medico != 0 & medico != 3 & infermiere != 3) ->
+			F p3.evento_critico)

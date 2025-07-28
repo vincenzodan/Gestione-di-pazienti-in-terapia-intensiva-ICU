@@ -1,0 +1,1031 @@
+<?xml version="1.0" encoding="ISO-8859-1"?><pnml>
+    <net id="Net-One" type="P/T net">
+        <token id="Default" enabled="true" red="0" green="0" blue="0"/>
+        <labels x="97" y="802" width="151" height="43" border="true">
+            <text>Gestione di pazienti in terapia intensiva</text>
+        </labels>
+        <place id="P_AllarmeGenerato">
+            <graphics>
+                <position x="600.0" y="315.0"/>
+            </graphics>
+            <name>
+                <value>P_AllarmeGenerato</value>
+                <graphics>
+                    <offset x="65.3896103896103" y="-19.28571428571427"/>
+                </graphics>
+            </name>
+            <initialMarking>
+                <value>Default,0</value>
+                <graphics>
+                    <offset x="0.0" y="0.0"/>
+                </graphics>
+            </initialMarking>
+            <capacity>
+                <value>0</value>
+            </capacity>
+        </place>
+        <place id="P_FineTrattamentoInfermiere">
+            <graphics>
+                <position x="1260.0" y="375.0"/>
+            </graphics>
+            <name>
+                <value>P_FineTrattamentoInfermiere</value>
+                <graphics>
+                    <offset x="65.38961038961037" y="-19.610389610389607"/>
+                </graphics>
+            </name>
+            <initialMarking>
+                <value>Default,0</value>
+                <graphics>
+                    <offset x="0.0" y="0.0"/>
+                </graphics>
+            </initialMarking>
+            <capacity>
+                <value>0</value>
+            </capacity>
+        </place>
+        <place id="P_FineTrattamentoMedico">
+            <graphics>
+                <position x="1245.0" y="270.0"/>
+            </graphics>
+            <name>
+                <value>P_FineTrattamentoMedico</value>
+                <graphics>
+                    <offset x="84.35064935064933" y="-12.467532467532468"/>
+                </graphics>
+            </name>
+            <initialMarking>
+                <value>Default,0</value>
+                <graphics>
+                    <offset x="0.0" y="0.0"/>
+                </graphics>
+            </initialMarking>
+            <capacity>
+                <value>0</value>
+            </capacity>
+        </place>
+        <place id="P_InfermieriDisponili">
+            <graphics>
+                <position x="720.0" y="450.0"/>
+            </graphics>
+            <name>
+                <value>P_InfermieriDisponili</value>
+                <graphics>
+                    <offset x="69.97402597402595" y="43.519480519480524"/>
+                </graphics>
+            </name>
+            <initialMarking>
+                <value>Default,1</value>
+                <graphics>
+                    <offset x="0.0" y="0.0"/>
+                </graphics>
+            </initialMarking>
+            <capacity>
+                <value>0</value>
+            </capacity>
+        </place>
+        <place id="P_IstruzioniMedico">
+            <graphics>
+                <position x="825.0" y="375.0"/>
+            </graphics>
+            <name>
+                <value>P_IstruzioniMedico</value>
+                <graphics>
+                    <offset x="70.37462537462558" y="-8.516483516483516"/>
+                </graphics>
+            </name>
+            <initialMarking>
+                <value>Default,0</value>
+                <graphics>
+                    <offset x="0.0" y="0.0"/>
+                </graphics>
+            </initialMarking>
+            <capacity>
+                <value>0</value>
+            </capacity>
+        </place>
+        <place id="P_LettiDisponibili">
+            <graphics>
+                <position x="285.0" y="450.0"/>
+            </graphics>
+            <name>
+                <value>P_LettiDisponibili</value>
+                <graphics>
+                    <offset x="0.0" y="0.0"/>
+                </graphics>
+            </name>
+            <initialMarking>
+                <value>Default,3</value>
+                <graphics>
+                    <offset x="0.0" y="0.0"/>
+                </graphics>
+            </initialMarking>
+            <capacity>
+                <value>0</value>
+            </capacity>
+        </place>
+        <place id="P_MediciDisponibili">
+            <graphics>
+                <position x="720.0" y="195.0"/>
+            </graphics>
+            <name>
+                <value>P_MediciDisponibili</value>
+                <graphics>
+                    <offset x="71.63636363636363" y="-11.727272727272727"/>
+                </graphics>
+            </name>
+            <initialMarking>
+                <value>Default,1</value>
+                <graphics>
+                    <offset x="0.0" y="0.0"/>
+                </graphics>
+            </initialMarking>
+            <capacity>
+                <value>0</value>
+            </capacity>
+        </place>
+        <place id="P_PazientiInArrivo">
+            <graphics>
+                <position x="165.0" y="315.0"/>
+            </graphics>
+            <name>
+                <value>P_PazientiInArrivo</value>
+                <graphics>
+                    <offset x="63.0" y="-13.0"/>
+                </graphics>
+            </name>
+            <initialMarking>
+                <value>Default,0</value>
+                <graphics>
+                    <offset x="0.0" y="0.0"/>
+                </graphics>
+            </initialMarking>
+            <capacity>
+                <value>20</value>
+            </capacity>
+        </place>
+        <place id="P_PazientiInTrasferimento">
+            <graphics>
+                <position x="1455.0" y="315.0"/>
+            </graphics>
+            <name>
+                <value>P_PazientiInTrasferimento</value>
+                <graphics>
+                    <offset x="114.15584415584402" y="-9.679320679320679"/>
+                </graphics>
+            </name>
+            <initialMarking>
+                <value>Default,0</value>
+                <graphics>
+                    <offset x="0.0" y="0.0"/>
+                </graphics>
+            </initialMarking>
+            <capacity>
+                <value>0</value>
+            </capacity>
+        </place>
+        <place id="P_PazientiMonitorati">
+            <graphics>
+                <position x="360.0" y="315.0"/>
+            </graphics>
+            <name>
+                <value>P_PazientiMonitorati</value>
+                <graphics>
+                    <offset x="108.46153846153874" y="-22.097902097902086"/>
+                </graphics>
+            </name>
+            <initialMarking>
+                <value>Default,0</value>
+                <graphics>
+                    <offset x="0.0" y="0.0"/>
+                </graphics>
+            </initialMarking>
+            <capacity>
+                <value>0</value>
+            </capacity>
+        </place>
+        <place id="P_PresaInCaricoInfermiere">
+            <graphics>
+                <position x="1020.0" y="375.0"/>
+            </graphics>
+            <name>
+                <value>P_PresaInCaricoInfermiere</value>
+                <graphics>
+                    <offset x="73.63636363636363" y="-16.363636363636363"/>
+                </graphics>
+            </name>
+            <initialMarking>
+                <value>Default,0</value>
+                <graphics>
+                    <offset x="0.0" y="0.0"/>
+                </graphics>
+            </initialMarking>
+            <capacity>
+                <value>0</value>
+            </capacity>
+        </place>
+        <place id="P_PresaInCaricoMedico">
+            <graphics>
+                <position x="1020.0" y="270.0"/>
+            </graphics>
+            <name>
+                <value>P_PresaInCaricoMedico</value>
+                <graphics>
+                    <offset x="66.09090909090905" y="-9.545454545454545"/>
+                </graphics>
+            </name>
+            <initialMarking>
+                <value>Default,0</value>
+                <graphics>
+                    <offset x="0.0" y="0.0"/>
+                </graphics>
+            </initialMarking>
+            <capacity>
+                <value>0</value>
+            </capacity>
+        </place>
+        <transition id="T_ArrivoPaziente">
+            <graphics>
+                <position x="75.0" y="315.0"/>
+            </graphics>
+            <name>
+                <value>T_ArrivoPaziente</value>
+                <graphics>
+                    <offset x="62.0" y="49.0"/>
+                </graphics>
+            </name>
+            <orientation>
+                <value>0</value>
+            </orientation>
+            <rate>
+                <value>0.1</value>
+            </rate>
+            <timed>
+                <value>true</value>
+            </timed>
+            <infiniteServer>
+                <value>false</value>
+            </infiniteServer>
+            <priority>
+                <value>1</value>
+            </priority>
+        </transition>
+        <transition id="T_AssegnazioneLetto">
+            <graphics>
+                <position x="285.0" y="315.0"/>
+            </graphics>
+            <name>
+                <value>T_AssegnazioneLetto</value>
+                <graphics>
+                    <offset x="71.18181818181812" y="54.999999999999964"/>
+                </graphics>
+            </name>
+            <orientation>
+                <value>0</value>
+            </orientation>
+            <rate>
+                <value>1.0</value>
+            </rate>
+            <timed>
+                <value>false</value>
+            </timed>
+            <infiniteServer>
+                <value>false</value>
+            </infiniteServer>
+            <priority>
+                <value>1</value>
+            </priority>
+        </transition>
+        <transition id="T_ConsultoMedico">
+            <graphics>
+                <position x="900.0" y="375.0"/>
+            </graphics>
+            <name>
+                <value>T_ConsultoMedico</value>
+                <graphics>
+                    <offset x="70.45454545454537" y="42.27272727272725"/>
+                </graphics>
+            </name>
+            <orientation>
+                <value>0</value>
+            </orientation>
+            <rate>
+                <value>2.0</value>
+            </rate>
+            <timed>
+                <value>true</value>
+            </timed>
+            <infiniteServer>
+                <value>false</value>
+            </infiniteServer>
+            <priority>
+                <value>1</value>
+            </priority>
+        </transition>
+        <transition id="T_GenerazioneAllarme">
+            <graphics>
+                <position x="495.0" y="315.0"/>
+            </graphics>
+            <name>
+                <value>T_GenerazioneAllarme</value>
+                <graphics>
+                    <offset x="79.71428571428572" y="43.285714285714285"/>
+                </graphics>
+            </name>
+            <orientation>
+                <value>0</value>
+            </orientation>
+            <rate>
+                <value>0.5</value>
+            </rate>
+            <timed>
+                <value>true</value>
+            </timed>
+            <infiniteServer>
+                <value>false</value>
+            </infiniteServer>
+            <priority>
+                <value>1</value>
+            </priority>
+        </transition>
+        <transition id="T_InterventoInfermiere">
+            <graphics>
+                <position x="720.0" y="375.0"/>
+            </graphics>
+            <name>
+                <value>T_InterventoInfermiere</value>
+                <graphics>
+                    <offset x="78.96103896103891" y="-12.080919080919067"/>
+                </graphics>
+            </name>
+            <orientation>
+                <value>0</value>
+            </orientation>
+            <rate>
+                <value>0.667</value>
+            </rate>
+            <timed>
+                <value>true</value>
+            </timed>
+            <infiniteServer>
+                <value>false</value>
+            </infiniteServer>
+            <priority>
+                <value>1</value>
+            </priority>
+        </transition>
+        <transition id="T_InterventoMedico">
+            <graphics>
+                <position x="720.0" y="270.0"/>
+            </graphics>
+            <name>
+                <value>T_InterventoMedico</value>
+                <graphics>
+                    <offset x="74.99999999999997" y="48.63636363636361"/>
+                </graphics>
+            </name>
+            <orientation>
+                <value>0</value>
+            </orientation>
+            <rate>
+                <value>1.0</value>
+            </rate>
+            <timed>
+                <value>true</value>
+            </timed>
+            <infiniteServer>
+                <value>false</value>
+            </infiniteServer>
+            <priority>
+                <value>1</value>
+            </priority>
+        </transition>
+        <transition id="T_RitornoMonitoraggioI">
+            <graphics>
+                <position x="1260.0" y="510.0"/>
+            </graphics>
+            <name>
+                <value>T_RitornoMonitoraggioI</value>
+                <graphics>
+                    <offset x="77.62626262626264" y="-18.93939393939397"/>
+                </graphics>
+            </name>
+            <orientation>
+                <value>90</value>
+            </orientation>
+            <rate>
+                <value>1.0</value>
+            </rate>
+            <timed>
+                <value>false</value>
+            </timed>
+            <infiniteServer>
+                <value>false</value>
+            </infiniteServer>
+            <priority>
+                <value>1</value>
+            </priority>
+        </transition>
+        <transition id="T_RitornoMonitoraggioM">
+            <graphics>
+                <position x="1245.0" y="135.0"/>
+            </graphics>
+            <name>
+                <value>T_RitornoMonitoraggioM</value>
+                <graphics>
+                    <offset x="80.45454545454535" y="57.22222222222226"/>
+                </graphics>
+            </name>
+            <orientation>
+                <value>90</value>
+            </orientation>
+            <rate>
+                <value>1.0</value>
+            </rate>
+            <timed>
+                <value>false</value>
+            </timed>
+            <infiniteServer>
+                <value>false</value>
+            </infiniteServer>
+            <priority>
+                <value>1</value>
+            </priority>
+        </transition>
+        <transition id="T_TrasferimentoPaziente">
+            <graphics>
+                <position x="1590.0" y="315.0"/>
+            </graphics>
+            <name>
+                <value>T_TrasferimentoPaziente</value>
+                <graphics>
+                    <offset x="92.27272727272715" y="41.36363636363636"/>
+                </graphics>
+            </name>
+            <orientation>
+                <value>0</value>
+            </orientation>
+            <rate>
+                <value>0.25</value>
+            </rate>
+            <timed>
+                <value>true</value>
+            </timed>
+            <infiniteServer>
+                <value>false</value>
+            </infiniteServer>
+            <priority>
+                <value>1</value>
+            </priority>
+        </transition>
+        <transition id="T_TrasferimentoPazientiI">
+            <graphics>
+                <position x="1350.0" y="375.0"/>
+            </graphics>
+            <name>
+                <value>T_TrasferimentoPazientiI</value>
+                <graphics>
+                    <offset x="92.57575757575724" y="53.28282828282834"/>
+                </graphics>
+            </name>
+            <orientation>
+                <value>0</value>
+            </orientation>
+            <rate>
+                <value>1.0</value>
+            </rate>
+            <timed>
+                <value>false</value>
+            </timed>
+            <infiniteServer>
+                <value>false</value>
+            </infiniteServer>
+            <priority>
+                <value>1</value>
+            </priority>
+        </transition>
+        <transition id="T_TrasferimentoPazientiM">
+            <graphics>
+                <position x="1350.0" y="270.0"/>
+            </graphics>
+            <name>
+                <value>T_TrasferimentoPazientiM</value>
+                <graphics>
+                    <offset x="128.19480519480504" y="-16.987012987012957"/>
+                </graphics>
+            </name>
+            <orientation>
+                <value>0</value>
+            </orientation>
+            <rate>
+                <value>0.5</value>
+            </rate>
+            <timed>
+                <value>false</value>
+            </timed>
+            <infiniteServer>
+                <value>false</value>
+            </infiniteServer>
+            <priority>
+                <value>1</value>
+            </priority>
+        </transition>
+        <transition id="T_TrattamentoInfermiere">
+            <graphics>
+                <position x="1140.0" y="375.0"/>
+            </graphics>
+            <name>
+                <value>T_TrattamentoInfermiere</value>
+                <graphics>
+                    <offset x="82.27272727272725" y="42.272727272727295"/>
+                </graphics>
+            </name>
+            <orientation>
+                <value>0</value>
+            </orientation>
+            <rate>
+                <value>0.5</value>
+            </rate>
+            <timed>
+                <value>true</value>
+            </timed>
+            <infiniteServer>
+                <value>false</value>
+            </infiniteServer>
+            <priority>
+                <value>1</value>
+            </priority>
+        </transition>
+        <transition id="T_TrattamentoMedico">
+            <graphics>
+                <position x="1140.0" y="270.0"/>
+            </graphics>
+            <name>
+                <value>T_TrattamentoMedico</value>
+                <graphics>
+                    <offset x="76.81818181818178" y="46.81818181818182"/>
+                </graphics>
+            </name>
+            <orientation>
+                <value>0</value>
+            </orientation>
+            <rate>
+                <value>0.5</value>
+            </rate>
+            <timed>
+                <value>true</value>
+            </timed>
+            <infiniteServer>
+                <value>false</value>
+            </infiniteServer>
+            <priority>
+                <value>1</value>
+            </priority>
+        </transition>
+        <arc id="Coda di attesa to T1" source="P_PazientiInArrivo" target="T_AssegnazioneLetto">
+            <graphics/>
+            <inscription>
+                <value>Default,1</value>
+                <graphics/>
+            </inscription>
+            <tagged>
+                <value>false</value>
+            </tagged>
+            <arcpath id="000" x="191" y="327" curvePoint="false"/>
+            <arcpath id="001" x="291" y="327" curvePoint="false"/>
+            <type value="normal"/>
+        </arc>
+        <arc id="Infermieri Disponili to Istruzioni Med" source="P_InfermieriDisponili" target="T_InterventoInfermiere">
+            <graphics/>
+            <inscription>
+                <value>Default,1</value>
+                <graphics/>
+            </inscription>
+            <tagged>
+                <value>false</value>
+            </tagged>
+            <arcpath id="000" x="732" y="447" curvePoint="false"/>
+            <arcpath id="001" x="732" y="402" curvePoint="false"/>
+            <type value="normal"/>
+        </arc>
+        <arc id="Medici Disponibili to Istruzioni Med" source="P_MediciDisponibili" target="T_InterventoInfermiere">
+            <graphics/>
+            <inscription>
+                <value/>
+                <graphics/>
+            </inscription>
+            <tagged>
+                <value/>
+            </tagged>
+            <arcpath id="000" x="740" y="219" curvePoint="false"/>
+            <arcpath id="001" x="765" y="257" curvePoint="false"/>
+            <arcpath id="002" x="758" y="326" curvePoint="false"/>
+            <arcpath id="003" x="732" y="372" curvePoint="false"/>
+            <type value="inhibitor"/>
+        </arc>
+        <arc id="Medici Disponibili to T5" source="P_MediciDisponibili" target="T_InterventoMedico">
+            <graphics/>
+            <inscription>
+                <value>Default,1</value>
+                <graphics/>
+            </inscription>
+            <tagged>
+                <value>false</value>
+            </tagged>
+            <arcpath id="000" x="732" y="221" curvePoint="false"/>
+            <arcpath id="001" x="732" y="267" curvePoint="false"/>
+            <type value="normal"/>
+        </arc>
+        <arc id="Monitoraggio to Alterazioni parametri" source="P_PazientiMonitorati" target="T_GenerazioneAllarme">
+            <graphics/>
+            <inscription>
+                <value>Default,1</value>
+                <graphics/>
+            </inscription>
+            <tagged>
+                <value>false</value>
+            </tagged>
+            <arcpath id="000" x="386" y="327" curvePoint="false"/>
+            <arcpath id="001" x="501" y="327" curvePoint="false"/>
+            <type value="normal"/>
+        </arc>
+        <arc id="P_FineTrattamentoMedico to T_RitornoMonitoraggioM" source="P_FineTrattamentoMedico" target="T_RitornoMonitoraggioM">
+            <graphics/>
+            <inscription>
+                <value>Default,1</value>
+                <graphics/>
+            </inscription>
+            <tagged>
+                <value>false</value>
+            </tagged>
+            <arcpath id="000" x="1256" y="267" curvePoint="false"/>
+            <arcpath id="001" x="1256" y="151" curvePoint="false"/>
+            <type value="normal"/>
+        </arc>
+        <arc id="P_LettiDisponibili to T_AssegnazioneLetto" source="P_LettiDisponibili" target="T_AssegnazioneLetto">
+            <graphics/>
+            <inscription>
+                <value>Default,1</value>
+                <graphics/>
+            </inscription>
+            <tagged>
+                <value>false</value>
+            </tagged>
+            <arcpath id="000" x="297" y="447" curvePoint="false"/>
+            <arcpath id="001" x="297" y="342" curvePoint="false"/>
+            <type value="normal"/>
+        </arc>
+        <arc id="P_PazientiInTrasferimento to T_TrasferimentoPaziente" source="P_PazientiInTrasferimento" target="T_TrasferimentoPaziente">
+            <graphics/>
+            <inscription>
+                <value>Default,1</value>
+                <graphics/>
+            </inscription>
+            <tagged>
+                <value>false</value>
+            </tagged>
+            <arcpath id="000" x="1481" y="327" curvePoint="false"/>
+            <arcpath id="001" x="1596" y="327" curvePoint="false"/>
+            <type value="normal"/>
+        </arc>
+        <arc id="P_TrattamentoInfermiere to T_TrattamentoInfermiere" source="P_PresaInCaricoInfermiere" target="T_TrattamentoInfermiere">
+            <graphics/>
+            <inscription>
+                <value>Default,1</value>
+                <graphics/>
+            </inscription>
+            <tagged>
+                <value>false</value>
+            </tagged>
+            <arcpath id="000" x="1046" y="387" curvePoint="false"/>
+            <arcpath id="001" x="1146" y="387" curvePoint="false"/>
+            <type value="normal"/>
+        </arc>
+        <arc id="P_TrattamentoMedico to T_TrattamentoMedico" source="P_PresaInCaricoMedico" target="T_TrattamentoMedico">
+            <graphics/>
+            <inscription>
+                <value>Default,1</value>
+                <graphics/>
+            </inscription>
+            <tagged>
+                <value>false</value>
+            </tagged>
+            <arcpath id="000" x="1046" y="282" curvePoint="false"/>
+            <arcpath id="001" x="1146" y="282" curvePoint="false"/>
+            <type value="normal"/>
+        </arc>
+        <arc id="P11 to T7" source="P_IstruzioniMedico" target="T_ConsultoMedico">
+            <graphics/>
+            <inscription>
+                <value>Default,1</value>
+                <graphics/>
+            </inscription>
+            <tagged>
+                <value>false</value>
+            </tagged>
+            <arcpath id="000" x="851" y="387" curvePoint="false"/>
+            <arcpath id="001" x="906" y="387" curvePoint="false"/>
+            <type value="normal"/>
+        </arc>
+        <arc id="Situazione di Allarme to Istruzioni Med" source="P_AllarmeGenerato" target="T_InterventoInfermiere">
+            <graphics/>
+            <inscription>
+                <value>Default,1</value>
+                <graphics/>
+            </inscription>
+            <tagged>
+                <value>false</value>
+            </tagged>
+            <arcpath id="000" x="625" y="334" curvePoint="false"/>
+            <arcpath id="001" x="726" y="387" curvePoint="false"/>
+            <type value="normal"/>
+        </arc>
+        <arc id="Situazione di Allarme to T5" source="P_AllarmeGenerato" target="T_InterventoMedico">
+            <graphics/>
+            <inscription>
+                <value>Default,1</value>
+                <graphics/>
+            </inscription>
+            <tagged>
+                <value>false</value>
+            </tagged>
+            <arcpath id="000" x="625" y="321" curvePoint="false"/>
+            <arcpath id="001" x="726" y="282" curvePoint="false"/>
+            <type value="normal"/>
+        </arc>
+        <arc id="T_ConsultoMedico to P_TrattamentoInfermiere" source="T_ConsultoMedico" target="P_PresaInCaricoInfermiere">
+            <graphics/>
+            <inscription>
+                <value>Default,1</value>
+                <graphics/>
+            </inscription>
+            <tagged>
+                <value>false</value>
+            </tagged>
+            <arcpath id="000" x="916" y="387" curvePoint="false"/>
+            <arcpath id="001" x="1017" y="387" curvePoint="false"/>
+            <type value="normal"/>
+        </arc>
+        <arc id="T_InterventoMedico to P_TrattamentoMedico" source="T_InterventoMedico" target="P_PresaInCaricoMedico">
+            <graphics/>
+            <inscription>
+                <value>Default,1</value>
+                <graphics/>
+            </inscription>
+            <tagged>
+                <value>false</value>
+            </tagged>
+            <arcpath id="000" x="736" y="282" curvePoint="false"/>
+            <arcpath id="001" x="1017" y="282" curvePoint="false"/>
+            <type value="normal"/>
+        </arc>
+        <arc id="T_RitornoMonitoraggioI to P_InfermieriDisponili" source="T_RitornoMonitoraggioI" target="P_InfermieriDisponili">
+            <graphics/>
+            <inscription>
+                <value>Default,1</value>
+                <graphics/>
+            </inscription>
+            <tagged>
+                <value>false</value>
+            </tagged>
+            <arcpath id="000" x="1256" y="522" curvePoint="false"/>
+            <arcpath id="001" x="665" y="519" curvePoint="false"/>
+            <arcpath id="002" x="665" y="463" curvePoint="false"/>
+            <arcpath id="003" x="717" y="462" curvePoint="false"/>
+            <type value="normal"/>
+        </arc>
+        <arc id="T_RitornoMonitoraggioM to P_MediciDisponibili" source="T_RitornoMonitoraggioM" target="P_MediciDisponibili">
+            <graphics/>
+            <inscription>
+                <value>Default,1</value>
+                <graphics/>
+            </inscription>
+            <tagged>
+                <value>false</value>
+            </tagged>
+            <arcpath id="000" x="1241" y="147" curvePoint="false"/>
+            <arcpath id="001" x="663" y="143" curvePoint="false"/>
+            <arcpath id="002" x="663" y="207" curvePoint="false"/>
+            <arcpath id="003" x="717" y="207" curvePoint="false"/>
+            <type value="normal"/>
+        </arc>
+        <arc id="T_RitornoMonitoraggioM to P_PazientiMonitorati" source="T_RitornoMonitoraggioM" target="P_PazientiMonitorati">
+            <graphics/>
+            <inscription>
+                <value>Default,1</value>
+                <graphics/>
+            </inscription>
+            <tagged>
+                <value>false</value>
+            </tagged>
+            <arcpath id="000" x="1271" y="147" curvePoint="false"/>
+            <arcpath id="001" x="1362" y="143" curvePoint="false"/>
+            <arcpath id="002" x="1362" y="76" curvePoint="false"/>
+            <arcpath id="003" x="373" y="76" curvePoint="false"/>
+            <arcpath id="004" x="372" y="312" curvePoint="false"/>
+            <type value="normal"/>
+        </arc>
+        <arc id="T_TrasferimentoPaziente to P_LettiDisponibili" source="T_TrasferimentoPaziente" target="P_LettiDisponibili">
+            <graphics/>
+            <inscription>
+                <value>Default,1</value>
+                <graphics/>
+            </inscription>
+            <tagged>
+                <value>false</value>
+            </tagged>
+            <arcpath id="000" x="1602" y="342" curvePoint="false"/>
+            <arcpath id="001" x="1597" y="690" curvePoint="false"/>
+            <arcpath id="002" x="298" y="690" curvePoint="false"/>
+            <arcpath id="003" x="297" y="476" curvePoint="false"/>
+            <type value="normal"/>
+        </arc>
+        <arc id="T_TrasferimentoPazientiI to P_InfermieriDisponili" source="T_TrasferimentoPazientiI" target="P_InfermieriDisponili">
+            <graphics/>
+            <inscription>
+                <value>Default,1</value>
+                <graphics/>
+            </inscription>
+            <tagged>
+                <value>false</value>
+            </tagged>
+            <arcpath id="000" x="1362" y="402" curvePoint="false"/>
+            <arcpath id="001" x="1364" y="463" curvePoint="false"/>
+            <arcpath id="002" x="747" y="462" curvePoint="false"/>
+            <type value="normal"/>
+        </arc>
+        <arc id="T_TrasferimentoPazientiI to P_PazientiInTrasferimento" source="T_TrasferimentoPazientiI" target="P_PazientiInTrasferimento">
+            <graphics/>
+            <inscription>
+                <value>Default,1</value>
+                <graphics/>
+            </inscription>
+            <tagged>
+                <value>false</value>
+            </tagged>
+            <arcpath id="000" x="1366" y="387" curvePoint="false"/>
+            <arcpath id="001" x="1454" y="334" curvePoint="false"/>
+            <type value="normal"/>
+        </arc>
+        <arc id="T_TrasferimentoPazientiM to P_MediciDisponibili" source="T_TrasferimentoPazientiM" target="P_MediciDisponibili">
+            <graphics/>
+            <inscription>
+                <value>Default,1</value>
+                <graphics/>
+            </inscription>
+            <tagged>
+                <value>false</value>
+            </tagged>
+            <arcpath id="000" x="1362" y="267" curvePoint="false"/>
+            <arcpath id="001" x="1363" y="208" curvePoint="false"/>
+            <arcpath id="002" x="747" y="207" curvePoint="false"/>
+            <type value="normal"/>
+        </arc>
+        <arc id="T_TrattamentoInfermiere to P_FineTrattamentoInfermiere" source="T_TrattamentoInfermiere" target="P_FineTrattamentoInfermiere">
+            <graphics/>
+            <inscription>
+                <value>Default,1</value>
+                <graphics/>
+            </inscription>
+            <tagged>
+                <value>false</value>
+            </tagged>
+            <arcpath id="000" x="1156" y="387" curvePoint="false"/>
+            <arcpath id="001" x="1257" y="387" curvePoint="false"/>
+            <type value="normal"/>
+        </arc>
+        <arc id="T_TrattamentoMedico to P_FineTrattamentoMedico" source="T_TrattamentoMedico" target="P_FineTrattamentoMedico">
+            <graphics/>
+            <inscription>
+                <value>Default,1</value>
+                <graphics/>
+            </inscription>
+            <tagged>
+                <value>false</value>
+            </tagged>
+            <arcpath id="000" x="1156" y="282" curvePoint="false"/>
+            <arcpath id="001" x="1242" y="282" curvePoint="false"/>
+            <type value="normal"/>
+        </arc>
+        <arc id="T0 to Coda di attesa" source="T_ArrivoPaziente" target="P_PazientiInArrivo">
+            <graphics/>
+            <inscription>
+                <value>Default,1</value>
+                <graphics/>
+            </inscription>
+            <tagged>
+                <value>false</value>
+            </tagged>
+            <arcpath id="000" x="91" y="327" curvePoint="false"/>
+            <arcpath id="001" x="162" y="327" curvePoint="false"/>
+            <type value="normal"/>
+        </arc>
+        <arc id="T11 to Trasferimento" source="T_TrasferimentoPazientiM" target="P_PazientiInTrasferimento">
+            <graphics/>
+            <inscription>
+                <value>Default,1</value>
+                <graphics/>
+            </inscription>
+            <tagged>
+                <value>false</value>
+            </tagged>
+            <arcpath id="000" x="1366" y="282" curvePoint="false"/>
+            <arcpath id="001" x="1453" y="320" curvePoint="false"/>
+            <type value="normal"/>
+        </arc>
+        <arc id="T14 to Monitoraggio" source="T_RitornoMonitoraggioI" target="P_PazientiMonitorati">
+            <graphics/>
+            <inscription>
+                <value>Default,1</value>
+                <graphics/>
+            </inscription>
+            <tagged>
+                <value>false</value>
+            </tagged>
+            <arcpath id="000" x="1286" y="522" curvePoint="false"/>
+            <arcpath id="001" x="1364" y="519" curvePoint="false"/>
+            <arcpath id="002" x="1364" y="614" curvePoint="false"/>
+            <arcpath id="003" x="373" y="614" curvePoint="false"/>
+            <arcpath id="004" x="372" y="341" curvePoint="false"/>
+            <type value="normal"/>
+        </arc>
+        <arc id="T1 to Monitoraggio" source="T_AssegnazioneLetto" target="P_PazientiMonitorati">
+            <graphics/>
+            <inscription>
+                <value>Default,1</value>
+                <graphics/>
+            </inscription>
+            <tagged>
+                <value>false</value>
+            </tagged>
+            <arcpath id="000" x="301" y="327" curvePoint="false"/>
+            <arcpath id="001" x="357" y="327" curvePoint="false"/>
+            <type value="normal"/>
+        </arc>
+        <arc id="T2 to Situazione di Allarme" source="T_GenerazioneAllarme" target="P_AllarmeGenerato">
+            <graphics/>
+            <inscription>
+                <value>Default,1</value>
+                <graphics/>
+            </inscription>
+            <tagged>
+                <value>false</value>
+            </tagged>
+            <arcpath id="000" x="511" y="327" curvePoint="false"/>
+            <arcpath id="001" x="597" y="327" curvePoint="false"/>
+            <type value="normal"/>
+        </arc>
+        <arc id="T6 to P11" source="T_InterventoInfermiere" target="P_IstruzioniMedico">
+            <graphics/>
+            <inscription>
+                <value>Default,1</value>
+                <graphics/>
+            </inscription>
+            <tagged>
+                <value>false</value>
+            </tagged>
+            <arcpath id="000" x="736" y="387" curvePoint="false"/>
+            <arcpath id="001" x="822" y="387" curvePoint="false"/>
+            <type value="normal"/>
+        </arc>
+        <arc id="Trattamento inf. to T14" source="P_FineTrattamentoInfermiere" target="T_RitornoMonitoraggioI">
+            <graphics/>
+            <inscription>
+                <value>Default,1</value>
+                <graphics/>
+            </inscription>
+            <tagged>
+                <value>false</value>
+            </tagged>
+            <arcpath id="000" x="1271" y="401" curvePoint="false"/>
+            <arcpath id="001" x="1271" y="516" curvePoint="false"/>
+            <type value="normal"/>
+        </arc>
+        <arc id="Trattamento inf. to T15" source="P_FineTrattamentoInfermiere" target="T_TrasferimentoPazientiI">
+            <graphics/>
+            <inscription>
+                <value>Default,1</value>
+                <graphics/>
+            </inscription>
+            <tagged>
+                <value>false</value>
+            </tagged>
+            <arcpath id="000" x="1286" y="387" curvePoint="false"/>
+            <arcpath id="001" x="1356" y="387" curvePoint="false"/>
+            <type value="normal"/>
+        </arc>
+        <arc id="Trattamento to T11" source="P_FineTrattamentoMedico" target="T_TrasferimentoPazientiM">
+            <graphics/>
+            <inscription>
+                <value>Default,1</value>
+                <graphics/>
+            </inscription>
+            <tagged>
+                <value>false</value>
+            </tagged>
+            <arcpath id="000" x="1271" y="282" curvePoint="false"/>
+            <arcpath id="001" x="1356" y="282" curvePoint="false"/>
+            <type value="normal"/>
+        </arc>
+    </net>
+</pnml>

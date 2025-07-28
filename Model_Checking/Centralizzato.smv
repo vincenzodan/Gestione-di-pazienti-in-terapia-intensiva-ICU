@@ -1,0 +1,141 @@
+MODULE main
+
+VAR
+  medico : {disponibile, occupato, trattamento};
+  infermiere : {disponibile, occupato, istruzioni, trattamento};
+  paziente : {osservazione, allarme, trattamento};
+  evento_critico : boolean;
+  tempo_allarme : 0..3;
+
+INIT
+  medico = disponibile &
+  infermiere = disponibile &
+  paziente = osservazione &
+  evento_critico = FALSE &
+  tempo_allarme = 0;
+
+ASSIGN
+  
+  -- Evoluzione dello stato del paziente
+  next(paziente) := case
+    paziente = osservazione : {osservazione, allarme}; -- l'allarme può generarsi
+    paziente = allarme & (medico = disponibile | infermiere = istruzioni) : trattamento;
+    paziente = trattamento : osservazione; -- trattamento concluso
+    TRUE : paziente;
+  esac;
+
+    -- Evoluzione del tempo dell'allarme
+  next(tempo_allarme) := case
+    paziente = allarme & tempo_allarme < 3 : tempo_allarme + 1;
+    paziente != allarme : 0; -- resetta se non è in allarme
+    TRUE : tempo_allarme;
+  esac;
+
+  -- Evento critico: scatta se il paziente resta troppo a lungo in allarme senza trattamento
+  next(evento_critico) := case
+    tempo_allarme = 2 & medico = occupato & (infermiere = disponibile | infermiere = occupato) : TRUE;
+    paziente = trattamento : FALSE;
+    TRUE : evento_critico;
+  esac;
+
+  -- Evoluzione del medico
+  next(medico) := case
+    paziente = allarme & medico = disponibile & infermiere != istruzioni: trattamento;
+	medico = trattamento : disponibile;
+	medico = disponibile & paziente != allarme : {disponibile, occupato};
+	medico = occupato : {disponibile, occupato};
+    TRUE : medico;
+  esac;
+
+  -- Evoluzione dell’infermiere
+  next(infermiere) := case
+    paziente = allarme & medico != disponibile & infermiere = disponibile : istruzioni;
+    infermiere = istruzioni : trattamento;
+    infermiere = trattamento : disponibile;
+	infermiere = disponibile & (paziente != allarme | paziente = allarme & medico = disponibile) : {disponibile, occupato};
+	infermiere = occupato : {disponibile, occupato};
+    TRUE : infermiere;
+  esac;
+
+--------------------------------------------------------------------------------|
+-- Se il medico e' disponibile durante una situazione di allarme e il contatore |
+-- dell’allarme non ha ancora raggiunto il valore massimo, allora il trattamento|
+-- verra' inevitabilmente avviato prima che si verifichi un evento				|
+-- critico:        																|
+--------------------------------------------------------------------------------|
+CTLSPEC AG ((paziente = allarme & medico = disponibile & tempo_allarme < 3)
+		-> AF (paziente = trattamento & !evento_critico))
+	-- Più stringente solo sul prossimo stato 
+CTLSPEC AG ((paziente = allarme & medico = disponibile & tempo_allarme < 3) 
+          -> AX (paziente = trattamento & !evento_critico))
+		  
+		---------
+		-- LTL --
+		---------
+LTLSPEC G ((paziente = allarme & medico = disponibile & tempo_allarme < 3) ->
+           F (paziente = trattamento & !evento_critico))
+LTLSPEC G ((paziente = allarme & medico = disponibile & tempo_allarme < 3) ->
+           X (paziente = trattamento & !evento_critico))	
+
+-- CASO IN CUI L'ALLARME SCATTA QUANDO IL MEDICO E' DISPONIBILE 
+
+CTLSPEC AG ((paziente = allarme & medico = disponibile & tempo_allarme = 0) ->
+         AX (paziente = trattamento & !evento_critico))
+		 
+		---------
+		-- LTL --
+		---------
+		
+LTLSPEC G ((paziente = allarme & medico = disponibile & tempo_allarme = 0) ->
+           X (paziente = trattamento & !evento_critico))		  
+
+-------------------------------------------------------------------------------------|
+--Nel caso in cui il medico non sia disponibile, ma l’infermiere abbia gia'			 |
+--ricevuto istruzioni e l’allarme sia attivo da meno di 3 step, allora il trattamento|
+--sara' comunque possibile, e si potra' raggiungere uno stato in cui				 |
+--esso e' attivo e l’evento critico non si verifica									 |
+-------------------------------------------------------------------------------------|	
+CTLSPEC AG (paziente = allarme & medico != disponibile & infermiere = istruzioni & tempo_allarme < 3 ->
+         EF (paziente = trattamento & !evento_critico))
+		 
+CTLSPEC AG (paziente = allarme & medico != disponibile & infermiere = istruzioni & tempo_allarme < 3 ->
+         AF (paziente = trattamento & !evento_critico))
+
+CTLSPEC AG (paziente = allarme & medico != disponibile & infermiere = istruzioni & tempo_allarme < 3 ->
+         AX (paziente = trattamento & !evento_critico))
+		 
+	-- CASO DI ESISTENZA DI UN CAMMINO POSITIVO SENZA CONSIDERARE IL TEMPO DI ALLARME 
+CTLSPEC AG (paziente = allarme & medico != disponibile & infermiere = istruzioni ->
+         EF (paziente = trattamento & !evento_critico))
+		 
+		 
+		---------
+		-- LTL --
+		---------
+LTLSPEC	G (paziente = allarme & medico != disponibile & infermiere = istruzioni & tempo_allarme < 3 ->
+        F (paziente = trattamento & !evento_critico))
+LTLSPEC	G (paziente = allarme & medico != disponibile & infermiere = istruzioni & tempo_allarme < 3 ->
+        X (paziente = trattamento & !evento_critico))		
+
+
+------------------------------------------------------------------------------------|
+--Se nessuna azione viene intrapresa entro tre intervalli successivi all’attivazione|
+--dell’allarme, l’evento critico `e inevitabile									    |
+------------------------------------------------------------------------------------|
+CTLSPEC AG ((paziente = allarme & tempo_allarme >= 2 & medico = occupato & infermiere != istruzioni & infermiere != trattamento) ->
+         AX evento_critico)
+	 
+CTLSPEC AG ((paziente = allarme & tempo_allarme  >= 2 & medico = occupato & infermiere != istruzioni & infermiere != trattamento) ->
+         AF evento_critico)
+
+		---------
+		-- LTL --
+		---------
+
+LTLSPEC G ((paziente = allarme & tempo_allarme  >= 2 & medico = occupato & infermiere != istruzioni & infermiere != trattamento) ->
+           X evento_critico)
+LTLSPEC G ((paziente = allarme & tempo_allarme  >= 2 & medico = occupato & infermiere != istruzioni & infermiere != trattamento) ->
+           F evento_critico)		   
+		   
+-- CASO IN CUI MEDICO E INFERMIERE RESTANO SEMPRE IN OCCUPATO SENZA CONSIDERARE IL TEMPO 
+LTLSPEC G ((paziente = allarme & G(medico != trattamento & infermiere != trattamento)) -> F evento_critico)		   		
